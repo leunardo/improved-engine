@@ -5,25 +5,27 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
 public class Todo {
-	private Long id;
+	private Long todoId;
 	private String text;
 	private boolean completed;
 	private Date created;
-
+	private Person owner;
 		
 	@Id
 	@GeneratedValue
 	public Long getId() {
-		return id;
+		return todoId;
 	}
 
 	public void setId(Long codigo) {
-		this.id = codigo;
+		this.todoId = codigo;
 	}
 
 	public String getText() {
@@ -56,7 +58,7 @@ public class Todo {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((todoId == null) ? 0 : todoId.hashCode());
 		return result;
 	}
 
@@ -70,12 +72,22 @@ public class Todo {
 
 			return false;
 		final Todo other = (Todo) obj;
-		if (id == null) {
-			if (other.id != null)
+		if (todoId == null) {
+			if (other.todoId != null)
 				return false;
-		} else if (!id.equals(other.id))
+		} else if (!todoId.equals(other.todoId))
 			return false;
 		return true;
+	}
+
+	@ManyToOne
+	@JoinColumn(name="personId")
+	public Person getOwner() {
+		return owner;
+	}
+
+	public void setOwner(Person owner) {
+		this.owner = owner;
 	}
 
 }
