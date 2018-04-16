@@ -14,7 +14,7 @@ public class AbstractDatabase <T extends Object> {
 	private Class<T> type;
     public AbstractDatabase(Class<T> type) {
       this.type = type;
-      factory = Persistence.createEntityManagerFactory("Projeto");
+      factory = Persistence.createEntityManagerFactory("improved-engine");
       manager = factory.createEntityManager();
     }
 
