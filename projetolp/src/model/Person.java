@@ -1,20 +1,25 @@
 package model;
 
-import java.util.List;
+import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Person {
-	private Long personId;
-	private String name;
+	private Long personId;  // 1
+	private String name;    // 2
+	private String cpf;     // 3
+	private String rg;      // 4
+	private Date birthDate; // 5
+	private String email;   // 6
 	
-
-	private Set<Todo> todos;
+	private Set<Todo> todos;// 7
 	
 	@Id
 	@GeneratedValue
@@ -38,8 +43,47 @@ public class Person {
 	public void setTodos(Set<Todo> todos) {
 		this.todos = todos;
 	}
+
+	public Long getPersonId() {
+		return personId;
+	}
 	
+	public void setPersonId(Long personId) {
+		this.personId = personId;
+	}
 	
+	public String getCpf() {
+		return cpf;
+	}
+	
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+	
+	public String getRg() {
+		return rg;
+	}
+	
+	public void setRg(String rg) {
+		this.rg = rg;
+	}
+	
+	@Temporal(TemporalType.DATE)
+	public Date getBirthDate() {
+		return birthDate;
+	}
+	
+	public void setBirthDate(Date birthDate) {
+		this.birthDate = birthDate;
+	}
+	
+	public String getEmail() {
+		return email;
+	}
+	
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	
 	@Override
 	public int hashCode() {
