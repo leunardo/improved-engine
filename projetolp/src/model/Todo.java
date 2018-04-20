@@ -1,23 +1,26 @@
 package model;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
 public class Todo {
-	private Long todoId;
-	private String text;
-	private boolean completed;
-	private Date created;
-	private Person owner;
-		
+	private Long todoId;         // 8
+	private String text; 		 // 9
+	private boolean completed;   // 10
+	private Date created;        // 11
+	private Person owner;        // 12
+	private List<Task> tasks;	 // 13
+	
 	@Id
 	@GeneratedValue
 	public Long getId() {
@@ -53,6 +56,14 @@ public class Todo {
 		this.created = created;
 	}
 
+	@OneToMany(mappedBy="todo")
+	public List<Task> getTasks() {
+		return tasks;
+	}
+
+	public void setTasks(List<Task> tasks) {
+		this.tasks = tasks;
+	}
 
 	@Override
 	public int hashCode() {
